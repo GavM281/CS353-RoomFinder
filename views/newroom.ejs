@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Room</title>
+</head>
+<body>
+    <h1> Create a new Room</h1>
+    <form action="/newroom" method="POST">
+        <div>
+            <lable for="name">Name</lable>
+            <input type="text" id="name" name="name">
+        </div>
+        <div>
+            <lable for="price">Price</lable>
+            <input type="text" id="price" name="price">
+        </div>
+        <div>
+            <lable for="details">Details</lable>
+            <input type="text" id="details" name="details">
+        </div>
+        <div>
+            <lable for="imageURL">image URL</lable>
+            <input type="text" id="imageURL" name="imageURL">
+        </div>
+        <button type="submit">Add room</button>
+    </form>
+    <a href="/">Back to Home</a>
+</body>
+</html>
