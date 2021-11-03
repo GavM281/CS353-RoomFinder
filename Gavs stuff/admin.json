@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "cs353-roomfinder",
+  "private_key_id": "51d6fca5e0f32f81935df57a941abae350cc782d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCkQAawcXVPrGPR\nmgVTJG8HsWa8AQzatesBzaXZGVCsw7Ga3M8HVAr2Qs8c2pUXF0TW84Th+bycr+iF\naWeWp8LHYAHS93baHUTIZEFEh3NBIBCNE4MIKB2kIxyjGrQeoSGo5sOp+5ziHlZB\n1UEcnRcZi0jm8J1EF2MH38R2JW2NoU8WpUXD8oJty6Pas8FQ+m4YikFjMSwo2oYJ\nDExj/xHypLs1WYZogWCU+CJp+mC1tLa/lVCeyi3itaM/SJNzL+iVzfFatLkNnXuu\n+H5Sne7efITl6x3LdLwtJV7lV+3IaP+ga8/PsTKaQdiRfl/WGLOEhJAlGUrkFDNx\nEkZzREoxAgMBAAECggEAEnfkiKhpQWkn3CSOXrflCB9pZtBTarAz2YMPF+chzBtA\n+CHF4ZQQm3oNobfuNad3JRhCo8oZ7CBXa9DbRfRdEV/5NIiAw6uw1Tt4n0T/r530\nXniILj2cf503FhvljuAdUcmIzK8vB7nThxl8dcQwGb4wl08Mz+A1UWhWxdYViGwh\nuXbxkL/vBtsqFI2McvbBFWPDckuK8BNOJaXzaWhhWP7fqgZDpmNCcBp+lFVzb4FZ\nq48pefxeyJlgJ/9YQACM/8uBK7SgxTFfpyqAaczNLpCVbtRv9r7gmDzLbM5JtH0U\njwXI/cVTaTG4TMyTPFUJRqL2wJ26w9Zs7BuEp+JncQKBgQDWB6sKMvOeOdvOk5ss\nZpDN11nlzm2v98eF0AXFNV6o536iO7l7/NqHpho0H1rvpJiQfZ5mUbFzlhcsrMSA\nDUqQ4+9jYP/ioBDCVfvxHG7SaO/uOQ597CcfYV3nvCzoQ2v3NCnKPCacKPfZ7KIr\n+1RqWtplZZPUcTn3efcEglEVHQKBgQDEdWckVf1V++3a6lpPWR9QsdtAB7gVD7//\nvO4sUwG51gYCbqrJZip72gZy5okTuL0PQ0pcGsxXmokbQybtzBLRPQ44IBEFeOec\nCv1UnAjc6CFYi6eeRJN/b8YWbGZxtT/5uWdd75d4TgX01EjnOJcjIjjUx+lllHlr\n/goI4kmhJQKBgC/Kooyyd+e677QfDaVKeccc8Tv5blC+uVTN8JvqoOqCVqqPP4nK\nGlnz4yIEZl/glxiclEQwtbkjqKUXJwGY9i+IVioQvNKz/0oFvS5HtQ9S01CUeQHx\nO4MsULWwNS7f7znR8grwh4aTN1T4G/ZKNr1Q8Dd4CRyE8/aoy1m8Z7KZAoGAFmCt\nG/VzgtzMbhgtq0YijAWGTNfUPwnpO88gbgoSc0GOs645Y/FwO2VNQL9Ds+xiFJ/8\nk1s2FXBz15ghkgqhxhWnTftRFQd9kkeqLX4MgGUsjzJxKFT1XBm2PY2haahUnjRh\nMtD8tuZkRUv89eF7TbQzNwGCc2CjKArqx7JG4sUCgYAdAimmideRI1C2Wubd0uIR\nLjyqyFhvibo+3+xseMqNyMEcBORWn1xvDEZe8qo/tfFb4EGQMPtbiuY8qR1NkmSp\nE1oPCGS2YDVK28uv8NsXrOkhi6q3g9IS4kx71tl8GFKBBLb8pJn+XmzDrlW7id5P\nS9NaaiXVdmNn+1gddq7Gxg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-j77bi@cs353-roomfinder.iam.gserviceaccount.com",
+  "client_id": "107985467748228338340",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-j77bi%40cs353-roomfinder.iam.gserviceaccount.com"
+}
