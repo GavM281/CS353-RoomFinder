@@ -1,3 +1,5 @@
+// Creating. Routes for home and new room.
+
 const express = require('express'); // require express
 const app = express();
 const path = require('path');
