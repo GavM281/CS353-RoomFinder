@@ -77,3 +77,12 @@ function getData(){
 app.listen(3000, ()=>{
     console.log('Listening on port 3000');
 })
+
+
+function display() {
+    propertyForm.style.display = "block";
+}
+
+function hide() {
+  propertyForm.style.display = "none";
+}
