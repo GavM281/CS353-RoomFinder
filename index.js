@@ -73,6 +73,43 @@ function getData(){
     });
 }
 
+// Retrieve data and create a list to display
+function retrieveData(data) {
+
+    // TODO: Create ul in HTML with id = room-List
+        const roomList = document.querySelector('#room-list');
+    
+        var roomListings = selectAll('.roomListing');
+        for (var i = 0; i < roomListings.length; i++) {
+            roomListings[i].remove();
+        }
+    
+        var rooms = data.val();
+        var keys = Object.keys(rooms);
+    
+        for(var i = 0; i < keys.length; i++) {
+            var k = keys [i];
+            var details = rooms [k].details;
+            var name = rooms [k].name;
+            var picture = rooms [k].picture;
+            var price = rooms [k].price;
+    
+            var li = createElement('li', details + ' ' + name + ' ' + picture + ' ' + price);
+            li.class('roomListing');
+            li.parent('room-list');
+        }
+    }
+    
+    // Update data
+    function updateData (colName, docID, det, name, pic, price) {
+        db.collection(colName).doc(docID).set({
+        details: det,
+        name: name,
+        picture: pic,
+        price: price
+        })
+    }
+
 // listen on port 3000
 app.listen(3000, ()=>{
     console.log('Listening on port 3000');
