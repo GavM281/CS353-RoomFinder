@@ -233,3 +233,14 @@ fieldset{
     right: 0px;
     top: 0px
 }
+
+.form-groupBook{
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+}
+
+#book{
+    width: 100px;
+    height: 70px;
+}
