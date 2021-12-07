@@ -1,16 +1,13 @@
-// Creating. Routes for home and new room.
-
 const express = require('express'); // require express
 const app = express();
 const path = require('path');
 const { v4: uuid } = require('uuid'); // Create a unique id
 
-// Use EJS, like HTML but allows use of Javascript
-app.set('view engine', 'ejs');
-// Use views directory
-app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.urlencoded({extended:false}))
+// Use views directory
+// app.set('views', path.join(__dirname, 'views'));
+
+// app.use(express.urlencoded({extended:false}))
 
 // Connect to Firebase
 const admin=require('firebase-admin');
@@ -29,36 +26,53 @@ var roomRef=db.ref("rooms");
 // default route renders home page
 app.get('/', async (req,res) => {
     const rooms = await getData(); // Get data
-    console.log("Data: " + rooms); // Print
-    res.render('home'); // Render home page
+    // console.log("Data: " + rooms); // Print
+    // retrieveData();
+    console.log("Loading home page");
+    res.sendFile(path.join(__dirname+'/home.html'));
 })
 
 // Render newroom page
 app.get('/newroom', (req,res) => {
-    res.render('newroom');
+    console.log("Loading newRoom page");
+    res.sendFile(path.join(__dirname+'/newroom.html'));
 })
 
 // After submitting form on newroom page, get that data and use it to create a room. Redirect to home page
 app.post('/newroom', async (req,res) => {
     var userData = req.body; // Save data
 
-    console.log("User input");
+    console.log("User input was:");
     console.log("Name: " + userData.name);
     console.log("price: " + userData.price);
     console.log("details: " + userData.details);
     console.log("imageURL: " + userData.imageURL);
+    console.log("formLat: " + userData.formLat);
+    console.log("formLong: " + userData.formLong);
 
     // Call method to create room in firebase, uuid() gives the room a unique id
-    writeRoomData(uuid(),userData.name, userData.price,userData.details, userData.imageURL);
+    writeRoomData(uuid(),userData.name, userData.price,userData.details, userData.imageURL, userData.formLat, userData.formLong);
     res.redirect('/'); // Redirect to home page
 })
 
-app.get('/deleteroom', async function(req, res){
-    var roomID = "cb831c00-95e1-48c7-bb11-4a9b8f949bb7"; // Id for the room to delete TODO: Get automatically from room
+// Render log in page
+app.get('/log', (req,res) => {
+    console.log("Loading log in page");
+    res.sendFile(path.join(__dirname+'/log.html'));
+})
+
+// deletes room with id
+app.get('/deleteroom/:id', async function(req, res){
+
+    // get room id from url
+    var roomID = req.params.id;
+    console.log("roomID 1: " + roomID);
+
+    // delete room with given id
     var deleteRoom = db.ref('rooms/' + roomID);
     deleteRoom.remove()
         .then(function() {
-            console.log("Remove succeeded.")
+            console.log("Remove successful.")
         })
         .catch(function(error) {
             console.log("Remove failed: " + error.message)
@@ -68,12 +82,15 @@ app.get('/deleteroom', async function(req, res){
 })
 
 // Create a room in Firebase
-function writeRoomData(userId, name, price, details, imageUrl) {
+function writeRoomData(userId, name, price, details, imageUrl, formLat, formLong) {
+    console.log("Going to add to database");
     db.ref("rooms/"+userId).set({
         name: name,
         price: price,
         details: details,
-        picture: imageUrl
+        picture: imageUrl,
+        latitude: formLat,
+        longitude: formLong
     });
 }
 
@@ -81,10 +98,9 @@ function writeRoomData(userId, name, price, details, imageUrl) {
 function getData(){
     roomRef.on('value', (snapshot) => {
         console.log(snapshot.val());
-        return snapshot.val()
-    }, (errorObject) => {
-        console.log('The read failed: ' + errorObject.name);
-    });
+        let snap = snapshot.val();
+        return JSON.stringify(snap);
+    })
 }
 
 // Retrieve data and create a list to display
