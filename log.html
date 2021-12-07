@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Firebase Auth: Google - TechFerment</title>
+</head>
+
+
+<body>
+
+<nav class="navbar navbar-dark navbar-expand-md" id="app-navbar">
+  <div class="container-fluid"><a class="navbar-brand" href="home.html"><i class="icon ion-ios-infinite" id="brand-logo"></i></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <button class="btn "><a href="/">Back to Home</a></button>
+<!--    <button class="btn "><a href="/log">Log in</a></button>-->
+
+    <div class="collapse navbar-collapse" id="navcol-2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link active" href="account.html">Account</a></li>
+      </ul>
+    </div>
+    <div class="d-flex align-items-center">
+      <label class="form-label d-flex mb-0" for="search-field">
+
+      </label>
+
+      <form class="me-auto search-form" target="_self">
+        <input id="search-field" class="form-control search-field" type="search" name="search" />
+      </form><a class="btn btn-light action-button" role="button" href="#"><i class="fa fa-search"></i></a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <h1 style="font-size: 2.5rem; font-weight: 800; padding-bottom: 300;">Welcome!</h1>
+
+  <!-- login scrreen with login in button -->
+  <div id="LoginScreen">
+    <button id="login">Login with Google</button>
+  </div>
+
+  <!-- logout scrreen with logout button -->
+  <div id="dashboard">
+    <div id="userDetails"></div>
+    <button id="logout">Logout</button>
+  </div>
+</div>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+
+
+<script type ="module">
+
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-analytics.js";
+
+  import { getAuth, signInWithPopup, GoogleAuthProvider ,onAuthStateChanged,  signOut} from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
+
+
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    // Paste your Config Code
+
+    apiKey: "AIzaSyApZIgN87Jy6iOjkmhk0QGkhDAHzgr4JhI",
+    authDomain: "cs353-18d8f.firebaseapp.com",
+    projectId: "cs353-18d8f",
+    storageBucket: "cs353-18d8f.appspot.com",
+    messagingSenderId: "100988194529",
+    appId: "1:100988194529:web:7ff7397346fd01189231a0",
+    measurementId: "G-F61ZBZGL76"
+
+  };
+
+
+
+  const app = initializeApp(firebaseConfig);
+  document.getElementById('dashboard').style.display="none"
+  const auth = getAuth();
+
+  document.getElementById('logout').addEventListener('click', LogoutUser)
+
+  const provider = new GoogleAuthProvider();
+
+  //login
+  document.getElementById('login').addEventListener('click',function()
+  {
+    console.log('Login Btn Call')
+
+
+    signInWithPopup(auth, provider).then(res=>{
+
+      console.log('logged in')
+      document.getElementById('LoginScreen').style.display="none"
+      document.getElementById('dashboard').style.display="block"
+
+    }).catch(e=>{
+      console.log(e)
+    })
+
+
+  });
+
+  //checks if user is already logged in, user doesnt have to login in again
+
+  function checkauthstate(){
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        //
+        document.getElementById('LoginScreen').style.display="none"
+        document.getElementById('dashboard').style.display="block"
+        const uid = user.uid;
+        console.log(user.email +'user is signed in' + uid)
+
+      } else {
+        // User is signed out
+
+        console.log('user out')
+      }
+
+
+
+    });
+  }
+
+
+  //log out
+  function LogoutUser(){
+    console.log('Logout Btn Call')
+
+    auth.signOut().then(()=>{
+
+      console.log('logged out')
+      document.getElementById('LoginScreen').style.display="block"
+      document.getElementById('dashboard').style.display="none"
+
+      //window.location.href="logout .html"; to move to different pages
+
+    }).catch(e=>{
+      console.log(e)
+    })
+
+
+  }
+
+
+  checkauthstate()
+
+
+  //*/
+</script>
+</body>
+</html>
