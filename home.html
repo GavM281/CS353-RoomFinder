@@ -8,6 +8,7 @@
     <script src="index.js"></script> 
     <title>Document</title>
 
+
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
@@ -16,6 +17,8 @@
     <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
     <link rel="stylesheet" href="assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+
+
 
 </head>
 <body>
@@ -100,13 +103,41 @@
 
     <div id="content_list">
         <table id="content">
-            <!-- <tr class="content-row">
-                <div onclick="window.location='item.html';" class="item"><img id="housePre" src="images/exHouse.jpg"></div>
-            </tr> -->
-            <li id="room-list">
-
-            </li>
+            <ul id="room-list">
+                
+            </ul>
         </table>
     </div>
+
+    <script type ="module">
+
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-analytics.js";
+      
+        import { getAuth, signInWithPopup, GoogleAuthProvider ,onAuthStateChanged,  signOut} from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
+      
+      
+      
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          // Paste your Config Code
+      
+          apiKey: "AIzaSyApZIgN87Jy6iOjkmhk0QGkhDAHzgr4JhI",
+          authDomain: "cs353-18d8f.firebaseapp.com",
+          projectId: "cs353-18d8f",
+          storageBucket: "cs353-18d8f.appspot.com",
+          messagingSenderId: "100988194529",
+          appId: "1:100988194529:web:7ff7397346fd01189231a0",
+          measurementId: "G-F61ZBZGL76"
+      
+        };
+      
+      
+      
+        const app = initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>      
+
 </body>
 </html>

@@ -106,6 +106,7 @@ function getData(){
 
 // Retrieve data and create a list to display
 function retrieveData(doc) {
+    console.log("hello?");
     const roomList = document.querySelector('#room-list');
     let li = document.createElement('li');
     let details = document.createElement('span');
