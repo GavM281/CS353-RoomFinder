@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Room</title>
+<!--    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+<!--    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+<!--    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">-->
+<!--    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">-->
+<!--    <link rel="stylesheet" href="assets/css/gradient-navbar-1.css">-->
+<!--    <link rel="stylesheet" href="assets/css/gradient-navbar.css">-->
+<!--    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">-->
+<!--    <link rel="stylesheet" href="assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css">-->
+
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style>
+        #container2{
+            /*height:100vh;*/
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #map{
+            height:100%;
+            width:100%;
+            border-radius: 12px;
+        }
+
+        /* Always set the map height explicitly to define the size of the div
+               * element that contains the map. */
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: #f1f1f1;
+        }
+
+    </style>
+
+
+</head>
+<style>
+    .login-clean {
+        /*background: #f1f7fc;*/
+        padding: 80px 0;
+
+    }
+
+    .login-clean form {
+        /*max-width: 320px;*/
+        width: 90%;
+        margin: 0 auto;
+        /*background-color: #ffffff;*/
+        padding: 40px;
+        /*border-radius: 4px;*/
+        color: #505e6c;
+        /*box-shadow: 1px 1px 5px rgba(0,0,0,0.1);*/
+    }
+
+    .login-clean form .form-control {
+        background: #f7f9fc;
+        border: none;
+        border-bottom: 1px solid #dfe7f1;
+        border-radius: 0;
+        box-shadow: none;
+        outline: none;
+        color: inherit;
+        text-indent: 8px;
+        height: 42px;
+    }
+
+    .login-clean form .btn-primary {
+        background: #f4476b;
+        border: none;
+        border-radius: 4px;
+        padding: 11px;
+        box-shadow: none;
+        margin-top: 26px;
+        text-shadow: none;
+        outline: none !important;
+    }
+
+    .login-clean form .btn-primary:hover, .login-clean form .btn-primary:active {
+        background: #eb3b60;
+    }
+
+    .login-clean form .btn-primary:active {
+        /*transform: translateY(1px);*/
+    }
+
+    .login-clean form .forgot {
+        display: block;
+        text-align: center;
+        font-size: 12px;
+        color: #6f7a85;
+        opacity: 0.9;
+        text-decoration: none;
+    }
+
+    .login-clean form .forgot:hover, .login-clean form .forgot:active {
+        /*opacity: 1;*/
+        /*text-decoration: none;*/
+    }
+
+
+
+    #createForm{
+        box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+        background-color: #ffffff;
+        /*padding: 40px;*/
+        border-radius: 12px;
+        /*max-width: 80%;*/
+        padding: 30px;
+    }
+
+    .container{
+        max-width: 80%;
+    }
+
+    .form-control{
+        border-radius: 8px !important;
+    }
+
+    #pac-input{
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+</style>
+
+<body>
+
+    <nav class="navbar navbar-dark navbar-expand-md" id="app-navbar">
+        <div class="container-fluid"><a class="navbar-brand" href="home.html"><i class="icon ion-ios-infinite" id="brand-logo"></i></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <button class="btn "><a href="/">Back to Home</a></button>
+            <button class="btn "><a href="/log">Log in</a></button>
+
+            <div class="collapse navbar-collapse" id="navcol-2">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link active" href="account.html">Account</a></li>
+                </ul>
+            </div>
+            <div class="d-flex align-items-center">
+                <label class="form-label d-flex mb-0" for="search-field">
+
+                </label>
+
+                <form class="me-auto search-form" target="_self">
+                    <input id="search-field" class="form-control search-field" type="search" name="search" />
+                </form><a class="btn btn-light action-button" role="button" href="#"><i class="fa fa-search"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="login-clean">
+
+        <div class="container" id="createForm">
+            <h2 class="display-2" style="border-bottom-width: 1px;border-bottom-style: solid;text-align: center;margin-bottom: 15px; margin-top: -20px;">New Room</h2>
+
+            <div class="row">
+
+                <!-- Map-->
+                <div id ="container2" class="col-md-6">
+
+                    <input
+                            id="pac-input"
+                            class="controls"
+                            type="text"
+                            placeholder="Search Box"
+                    />
+                    <div id="map"></div>
+
+<!--                    <ul class="geo-data">-->
+<!--                        <li>Latitude: <span id="lat"></span></li>-->
+<!--                        <li>Longitude: <span id="lng"></span></li>-->
+<!--                    </ul>-->
+
+                    <button class="btn btn-primary" id="login">Save Marker</button>
+
+                    <br>
+
+                    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+                    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+                    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
+                </div>
+
+
+                <!-- Form-->
+                <div class="col-md-6">
+                    <form action="/newroom" method="POST" style="min-width: 40%;border-radius: 12px;">
+                        <div class="mb-3"><input class="form-control" type="text" name="name" placeholder="Name" required></div>
+                        <div class="mb-3"><input class="form-control" type="number" placeholder="Price" name="price" required></div>
+                        <div class="mb-3"><textarea class="form-control" placeholder="Details" name="details" required></textarea></div>
+                        <!--        <div class="mb-3"><input class="form-control" type="file" name="Image"></div>-->
+                        <div class="mb-3"><input class="form-control" type="text" placeholder="Image URL" name="imageURL"></div>
+
+                        <div class="mb-3"><input class="form-control" type="text" placeholder="Latitude" name="formLat" id="formLat"></div>
+                        <div class="mb-3"><input class="form-control" type="text" placeholder="Longitude" name="formLong" id="formLong"></div>
+
+                        <div class="mb-3" style="text-align: center;"><button class="btn btn-primary" type="submit">Submit</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script type ="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+
+        import { getDatabase , ref, set,onValue} from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+
+
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-analytics.js";
+
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut} from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            // Paste your Config Code
+
+            apiKey: "AIzaSyApZIgN87Jy6iOjkmhk0QGkhDAHzgr4JhI",
+            authDomain: "cs353-18d8f.firebaseapp.com",
+            projectId: "cs353-18d8f",
+            storageBucket: "cs353-18d8f.appspot.com",
+            messagingSenderId: "100988194529",
+            appId: "1:100988194529:web:7ff7397346fd01189231a0",
+            measurementId: "G-F61ZBZGL76"
+        };
+
+
+
+        // const app = initializeApp(firebaseConfig);
+        // firebase.initializeApp(firebaseConfig);
+        // const database = firebase.database();
+        const app = initializeApp(firebaseConfig);
+        //const database = getDatabase();
+        // const data = snapshot.val();
+        //console.log(data);
+
+
+        var user =3;
+        document.getElementById('login').addEventListener('click',function()
+        { const database = getDatabase();
+            // console.log('Lkbkl')
+            // var lat=document.getElementById('lat').innerText
+            // var lng=document.getElementById('lng').innerText
+
+            var lat = document.getElementById('formLat').value
+            var lng = document.getElementById('formLong').value
+
+            user++
+            set(ref(database, 'cord/' + user), {
+
+                lat:lat,
+                lng:lng
+            });
+
+
+        });
+    </script>
+
+    <script>
+        function initAutocomplete() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 51.4960714, lng: -0.102279},
+                zoom: 13
+
+            });
+
+            // Create the search box and link it to the UI element.<input id="lat" type="text">
+
+            var input = document.getElementById('pac-input');
+            var searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function() {
+                searchBox.setBounds(map.getBounds());
+
+            });
+
+
+            var markers = [];
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener('places_changed', function() {
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Clear out the old markers.
+                markers.forEach(function(marker) {
+                    marker.setMap(null);
+                });
+
+                markers = [];
+
+                // For each place, get the icon, name and location.
+                var bounds = new google.maps.LatLngBounds();
+                for (var i = 0, place; place = places[i]; i++) {
+
+                    var image = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+
+                    var marker = new google.maps.Marker({
+                        draggable: true,
+                        map: map,
+                        icon: image,
+                        title: place.name,
+                        position: place.geometry.location
+                    });
+
+                    var x=marker.getPosition().lat().toFixed(6);
+                    var y=marker.getPosition().lng().toFixed(6);
+                    console.log(x);
+                    console.log(y);
+
+                    //document.getElementById('lat').value = marker.getPosition().lat().toFixed(6);
+                    // document.getElementById('lng').value = marker.getPosition().lng().toFixed(6);
+                    // document.getElementById('lat').innerHTML = marker.getPosition().lat().toFixed(6);
+                    // document.getElementById('lng').innerHTML = marker.getPosition().lng().toFixed(6);
+
+                    document.getElementById('formLat').value = marker.getPosition().lat().toFixed(6);
+                    document.getElementById('formLong').value = marker.getPosition().lng().toFixed(6);
+
+
+                    // drag response
+                    google.maps.event.addListener(marker, 'dragend', function(e) {
+                        displayPosition(this.getPosition());
+                    });
+                    // click response
+                    google.maps.event.addListener(marker, 'click', function(e) {
+                        displayPosition(this.getPosition());
+                    });
+                    markers.push(marker);
+                    bounds.extend(place.geometry.location);
+                }
+
+                map.fitBounds(bounds);
+            });
+
+            google.maps.event.addListener(map, 'bounds_changed', function() {
+                var bounds = map.getBounds();
+                searchBox.setBounds(bounds);
+            });
+
+            // displays a position on two <input> elements
+            function displayPosition(pos) {
+                // document.getElementById('lat').value = pos.lat();
+                // document.getElementById('lng').value = pos.lng();
+
+                // document.getElementById('lat').innerHTML = pos.lat();
+                // document.getElementById('lng').innerHTML =pos.lng();
+
+                document.getElementById('formLat').value = pos.lat();
+                document.getElementById('formLong').value =pos.lng();
+            }
+        }
+
+
+    </script>
+    <script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO_Ai2Qh3utct9OmI3Lmk1Z31t40txtSI&callback=initAutocomplete&libraries=places&v=weekly">
+    </script>
+</body>
+</html>

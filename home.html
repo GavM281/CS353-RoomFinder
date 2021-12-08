@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script> 
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/gradient-navbar-1.css">
+    <link rel="stylesheet" href="assets/css/gradient-navbar.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+
+
+</head>
+<body>
+    <nav class="navbar navbar-dark navbar-expand-md" id="app-navbar">
+        <div class="container-fluid"><a class="navbar-brand" href="home.html"><i class="icon ion-ios-infinite" id="brand-logo"></i></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-2">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link active" href="account.html">Account</a></li>
+                </ul>
+            </div>
+            <div class="d-flex align-items-center">
+                <label class="form-label d-flex mb-0" for="search-field">
+                    
+                </label>
+                
+                <form class="me-auto search-form" target="_self">
+                    <input id="search-field" class="form-control search-field" type="search" name="search" />
+                </form><a class="btn btn-light action-button" role="button" href="#"><i class="fa fa-search"></i></a>
+            </div>
+        </div>
+    </nav>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Off-Canvas-Sidebar-Drawer-Navbar.js"></script>
+    <script src="assets/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js"></script>
+    <div class="SideMenu">
+        <form id="sideForm">
+            <div class="card">
+                <article class="card-group-item">
+                    <header class="card-header">
+                        <h6 class="title">Range input </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label>Min</label>
+                          <input type="number" class="form-control" id="inputEmail4" placeholder="€0">
+                        </div>
+                        <div class="form-group col-md-6 text-right">
+                          <label>Max</label>
+                          <input type="number" class="form-control" placeholder="€1,0000">
+                        </div>
+                        </div>
+                        </div> <!-- card-body.// -->
+                    </div>
+                </article> <!-- card-group-item.// -->
+                <article class="card-group-item">
+                    <header class="card-header">
+                        <h6 class="title">Selection </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <div class="custom-control custom-checkbox">
+                                <span class="float-right badge badge-light round"></span>
+                                  <input type="checkbox" class="custom-control-input" id="Check1">
+                                  <label class="custom-control-label" for="Check1">Val1</label>
+                            </div> <!-- form-check.// -->
+            
+                            <div class="custom-control custom-checkbox">
+                                <span class="float-right badge badge-light round"></span>
+                                  <input type="checkbox" class="custom-control-input" id="Check2">
+                                 <label class="custom-control-label" for="Check2">Val2</label>
+                            </div> <!-- form-check.// -->
+            
+                            <div class="custom-control custom-checkbox">
+                                <span class="float-right badge badge-light round"></span>
+                                  <input type="checkbox" class="custom-control-input" id="Check3">
+                                  <label class="custom-control-label" for="Check3">Val3</label>
+                            </div> <!-- form-check.// -->
+            
+                            <div class="custom-control custom-checkbox">
+                                <span class="float-right badge badge-light round"></span>
+                                  <input type="checkbox" class="custom-control-input" id="Check4">
+                                  <label class="custom-control-label" for="Check4">Val4</label>
+                            </div> <!-- form-check.// -->
+                        </div> <!-- card-body.// -->
+                    </div>
+                </article> <!-- card-group-item.// -->
+            </div> <!-- card.// -->
+        </form>
+    </div>
+
+    <div id="content_list">
+        <table id="content">
+            <ul id="room-list">
+                
+            </ul>
+        </table>
+    </div>
+
+    <script type ="module">
+
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-analytics.js";
+      
+        import { getAuth, signInWithPopup, GoogleAuthProvider ,onAuthStateChanged,  signOut} from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
+      
+      
+      
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          // Paste your Config Code
+      
+          apiKey: "AIzaSyApZIgN87Jy6iOjkmhk0QGkhDAHzgr4JhI",
+          authDomain: "cs353-18d8f.firebaseapp.com",
+          projectId: "cs353-18d8f",
+          storageBucket: "cs353-18d8f.appspot.com",
+          messagingSenderId: "100988194529",
+          appId: "1:100988194529:web:7ff7397346fd01189231a0",
+          measurementId: "G-F61ZBZGL76"
+      
+        };
+      
+      
+      
+        const app = initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>      
+
+</body>
+</html>
