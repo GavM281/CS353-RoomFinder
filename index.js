@@ -103,32 +103,41 @@ function getData(){
     })
 }
 
+
 // Retrieve data and create a list to display
-function retrieveData(data) {
-
-    // TODO: Create ul in HTML with id = room-List
+function retrieveData(doc) {
     const roomList = document.querySelector('#room-list');
+    let li = document.createElement('li');
+    let details = document.createElement('span');
+    let latitude = document.createElement('span');
+    let longitude = document.createElement('span');
+    let name = document.createElement('span');
+    let picture = document.createElement('span');
+    let price = document.createElement('span');
 
-    var roomListings = selectAll('.roomListing');
-    for (var i = 0; i < roomListings.length; i++) {
-        roomListings[i].remove();
-    }
+    li.setAttribute('data-id', doc.id);
+    details.textContent = doc.data().details;
+    latitude.textContent = doc.data().latitude;
+    longitude.textContent = doc.data().longtitude;
+    name.textContent = doc.data().name;
+    picture.textContent = doc.data().picture;
+    price.textContent = doc.data().price;
 
-    var rooms = data.val();
-    var keys = Object.keys(rooms);
+    li.appendChild(details);
+    li.appendChild(latitude);
+    li.appendChild(longitude);
+    li.appendChild(name);
+    li.appendChild(picture);
+    li.appendChild(price);
 
-    for(var i = 0; i < keys.length; i++) {
-        var k = keys [i];
-        var details = rooms [k].details;
-        var name = rooms [k].name;
-        var picture = rooms [k].picture;
-        var price = rooms [k].price;
-
-        var li = createElement('li', details + ' ' + name + ' ' + picture + ' ' + price);
-        li.class('roomListing');
-        li.parent('room-list');
-    }
+    roomList.appendChild(li);
 }
+
+db.collection('rooms').get().then((snapshot) => {
+    snapshot.docs.forEach(doc => {
+        retrieveData(doc);
+    })
+})
 
 // Update data
 function updateData (colName, docID, det, name, pic, price) {
