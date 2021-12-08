@@ -110,8 +110,6 @@
     </div>
 
     <script type ="module">
-
-
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-analytics.js";
       
@@ -134,9 +132,8 @@
         };
       
       
-      
+        var db=admin.database();
         const app = initializeApp(firebaseConfig);
-        const db = firebase.firestore();
     </script>      
 
 </body>
