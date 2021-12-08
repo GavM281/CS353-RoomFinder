@@ -1,4 +1,6 @@
+console.log("Hello1");
 const express = require('express'); // require express
+console.log("Hello2");
 const app = express();
 const path = require('path');
 const { v4: uuid } = require('uuid'); // Create a unique id
@@ -19,8 +21,15 @@ admin.initializeApp({
     authDomain: "cs353-roomfinder.firebaseapp.com",
 });
 // Connect to database
+
 var db=admin.database();
 var roomRef=db.ref("rooms");
+
+ref.on('value', (snapshot) => {
+    console.log(snapshot.val());
+}, (errorObject) => {
+    console.log('The read failed: ' + errorObject.name);
+});
 
 
 // default route renders home page
@@ -105,49 +114,8 @@ function getData(){
 
 
 // Retrieve data and create a list to display
-function retrieveData(doc) {
-    console.log("hello?");
-    const roomList = document.querySelector('#room-list');
-    let li = document.createElement('li');
-    let details = document.createElement('span');
-    let latitude = document.createElement('span');
-    let longitude = document.createElement('span');
-    let name = document.createElement('span');
-    let picture = document.createElement('span');
-    let price = document.createElement('span');
-
-    li.setAttribute('data-id', doc.id);
-    details.textContent = doc.data().details;
-    latitude.textContent = doc.data().latitude;
-    longitude.textContent = doc.data().longtitude;
-    name.textContent = doc.data().name;
-    picture.textContent = doc.data().picture;
-    price.textContent = doc.data().price;
-
-    li.appendChild(details);
-    li.appendChild(latitude);
-    li.appendChild(longitude);
-    li.appendChild(name);
-    li.appendChild(picture);
-    li.appendChild(price);
-
-    roomList.appendChild(li);
-}
-
-db.collection('rooms').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-        retrieveData(doc);
-    })
-})
-
-// Update data
-function updateData (colName, docID, det, name, pic, price) {
-    db.collection(colName).doc(docID).set({
-        details: det,
-        name: name,
-        picture: pic,
-        price: price
-    })
+function retrieveData() {
+    
 }
 
 // listen on port 3000
