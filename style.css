@@ -2,6 +2,20 @@
     padding: 1%;
 }
 
+#logoutButton{
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+#logoutButton:hover{
+    background-color: lightblue;
+}
+
+#accountButton:hover{
+    background-color: lightblue;
+}
+
 #housePre{
     height: 100%;
 }

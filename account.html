@@ -23,7 +23,8 @@
     <div class="container-fluid"><a class="navbar-brand" href="home.html"><i class="icon ion-ios-infinite" id="brand-logo"></i></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-2">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link active" href="account.html">Account</a></li>
+              <li id="accountButton" class="nav-item"><a class="nav-link active" href="account.html">Account</a></li>
+              <button id="logoutButton">Logout</button>
             </ul>
         </div>
         <div class="d-flex align-items-center">
@@ -48,60 +49,20 @@
         </table>
     </div>
 
-    <div id="addItem" onclick="display()">
+    <div id="addItem">
+      
+
       <!-- <img id="icon2" src="images/plus.png"> -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="grey" class="bi bi-plus-circle" viewBox="0 0 16 16">
+    <a href="newroom.html#addSVG">
+      <svg id="addSVG" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="grey" class="bi bi-plus-circle" viewBox="0 0 16 16">
+      
       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
       <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-</svg>
+      </svg>
+    </a>
     </div>
 
-    <div id="propertyFormBack">
-    <form class="form-horizontal" id="propertyForm">
-        <fieldset>
-        <div class="itemX" id="itemX2"> <img src="images/ex.jpeg" style="width:25px;height:25px;" onclick="hide()"> </div>
-        <!-- Form Name -->
-        <!-- <legend>Property form</legend> -->
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="itemVal1">Val1</label>  
-          <div class="col-md-4">
-          <input id="itemVal1" name="itemVal1" type="text" placeholder="..." class="form-control input-md">
-            
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="itemVal2">Val2</label>  
-          <div class="col-md-4">
-          <input id="itemVal2" name="itemVal2" type="text" placeholder="..." class="form-control input-md">
-            
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="itemVal3">Val3</label>  
-          <div class="col-md-4">
-          <input id="itemVal3" name="itemVal3" type="text" placeholder="..." class="form-control input-md">
-            
-          </div>
-        </div>
-        
-        <!-- Button (Double) -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="itemValS"></label>
-          <div class="col-md-8">
-            <button id="itemValS" name="itemValS" class="btn btn-success">Submit</button>
-            <!-- <button id="itemValS" name="itemValS" class="btn btn-danger">Cancel</button> -->
-          </div>
-        </div>
-        
-        </fieldset>
-    </form>
-    </div>
+    
     <script type ="module">
 
 
