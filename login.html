@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Firebase Auth: Google - TechFerment</title>
+  </head>
+
+
+  <body>
+
+    <div class="container">
+    <h1 style="font-size: 2.5rem; font-weight: 800; padding-bottom: 300;">Welcome!</h1>
+    <div id="LoginScreen">
+      <button id="login">Login with Google</button>
+      <br>
+
+      <!--just for me to see if the users were getting signed in and out properly  -->
+      <button id="s">Check If User Is Signed In</button>
+    </div>
+
+      <div id="dashboard">
+      <div id="userDetails"></div>
+      <button id="logout">Logout</button>
+      
+    </div>
+  </div>
+
+     
+  </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+   
+    <!-- 
+      
+       <script>
+     document.getElementById('login').addEventListener('click',function()
+      {
+        window.alert("login fa");
+
+      })
+      </script>
+      
+      
+      TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+
+
+    
+    <script type ="module">
+      document.getElementById('logout').addEventListener('click',function()
+      {
+        //window.alert("login fa");
+
+      })
+
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-analytics.js";
+      
+      import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut} from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
+     
+      //import { getAuth, signOut } from "fhttps://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
+      //  import {  signOut } from "firebase/auth";
+      //const auth = getAuth();
+      //import { GoogleAuthProvider } from "firebase/auth";
+     // import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
+      
+      
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        // Paste your Config Code
+    
+          apiKey: "AIzaSyApZIgN87Jy6iOjkmhk0QGkhDAHzgr4JhI",
+          authDomain: "cs353-18d8f.firebaseapp.com",
+          projectId: "cs353-18d8f",
+          storageBucket: "cs353-18d8f.appspot.com",
+          messagingSenderId: "100988194529",
+          appId: "1:100988194529:web:7ff7397346fd01189231a0",
+          measurementId: "G-F61ZBZGL76"
+      
+      };
+
+      
+      
+      const app = initializeApp(firebaseConfig);
+      document.getElementById('dashboard').style.display="none"
+      const auth = getAuth();
+      //document.getElementById('login').addEventListener('click', GoogleLogin)
+
+  // let provider = new firebase.auth.GoogleAuthProvider()
+      const provider = new GoogleAuthProvider();
+       // const auth = getAuth();
+
+
+
+       document.getElementById('login').addEventListener('click',function()
+      {
+        console.log('Login Btn Call')
+
+         signInWithPopup(auth, provider).then(res=>{
+          
+          document.getElementById('LoginScreen').style.display="none"
+          document.getElementById('dashboard').style.display="block"
+          
+         // showUserDetails(res.user)
+        }).catch(e=>{
+          console.log(e)
+        })
+
+      
+    });
+
+       document.getElementById('logout').addEventListener('click',function()
+
+
+
+
+            {
+                 auth.signOut().then(()=>{
+
+               console.log('jh')
+               document.getElementById('LoginScreen').style.display="block"
+              document.getElementById('dashboard').style.display="none"
+              //window.location.href="logout .html";
+
+            }).catch(e=>{
+            console.log(e)
+            })
+
+            });
+
+            document.getElementById('s').addEventListener('click',function()
+
+{
+   
+
+
+
+
+  //check if useer is signed in 
+              onAuthStateChanged(auth, (user) => {
+              if (user) {
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/firebase.User
+                const uid = user.uid;
+                console.log('user in')
+                // ...
+              } else {
+                // User is signed out
+                // ...
+                console.log('user out')
+              }
+            });
+
+            });
+           
+      //*/
+    </script>
+  </body>
+</html>
