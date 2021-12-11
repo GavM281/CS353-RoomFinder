@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
-<!--    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">-->
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
     <link rel="stylesheet" type="text/css" href="style.css">
 
-<!--    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">-->
-<!--    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">-->
-<!--    <link rel="stylesheet" href="assets/css/gradient-navbar-1.css">-->
-<!--    <link rel="stylesheet" href="assets/css/gradient-navbar.css">-->
-<!--    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">-->
-<!--    <link rel="stylesheet" href="assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css">-->
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/gradient-navbar-1.css">
+    <link rel="stylesheet" href="assets/css/gradient-navbar.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css">
 
 
 
@@ -111,8 +111,6 @@
         /*text-decoration: none;*/
     }
 
-
-
     #createForm{
         box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
         background-color: #ffffff;
@@ -167,27 +165,23 @@
             <h2 class="display-2" style="border-bottom-width: 1px;border-bottom-style: solid;text-align: center;margin-bottom: 15px; margin-top: -20px;">New Room</h2>
 
             <div class="row">
-
                 <!-- Map-->
                 <div id ="container2" class="col-md-6">
-
                     <input
                             id="pac-input"
                             class="controls"
                             type="text"
-                            placeholder="Search Box"
+                            placeholder="Enter Eircode or search"
                     />
                     <div id="map"></div>
-
+                    <button class="btn btn-default"><a href="https://finder.eircode.ie/#">Find your Eircode</a></button>
 <!--                    <ul class="geo-data">-->
 <!--                        <li>Latitude: <span id="lat"></span></li>-->
 <!--                        <li>Longitude: <span id="lng"></span></li>-->
 <!--                    </ul>-->
 
-                    <button class="btn btn-primary" id="save">Save Marker</button>
-
-                    <br>
-
+<!--                    <button class="btn btn-primary" id="login">Save Marker</button>-->
+<!--                    <br>-->
                     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
                     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
                     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
@@ -198,15 +192,15 @@
                 <div class="col-md-6">
                     <form action="/newroom" method="POST" style="min-width: 40%;border-radius: 12px;">
                         <div class="mb-3"><input class="form-control" type="text" name="name" placeholder="Name" required></div>
-                        <div class="mb-3"><input class="form-control" type="number" placeholder="Price" name="price" required></div>
-                        <div class="mb-3"><textarea class="form-control" placeholder="Details" name="details" required></textarea></div>
+                        <div class="mb-3"><input class="form-control" type="number" name="price" placeholder="Price"  required></div>
+                        <div class="mb-3"><textarea class="form-control" name="details" placeholder="Details"  required></textarea></div>
                         <!--        <div class="mb-3"><input class="form-control" type="file" name="Image"></div>-->
-                        <div class="mb-3"><input class="form-control" type="text" placeholder="Image URL" name="imageURL"></div>
+                        <div class="mb-3"><input class="form-control" type="text" name="imageURL" placeholder="Copy a URL for your image"></div>
 
-                        <div class="mb-3"><input class="form-control" type="text" placeholder="Latitude" name="formLat" id="formLat"></div>
-                        <div class="mb-3"><input class="form-control" type="text" placeholder="Longitude" name="formLong" id="formLong"></div>
+                        <div class="mb-3"><input class="form-control" type="text" name="formLat" placeholder="Latitude" id="formLat"></div>
+                        <div class="mb-3"><input class="form-control" type="text" name="formLong" placeholder="Longitude" id="formLong"></div>
 
-                        <div class="mb-3" style="text-align: center;"><button class="btn btn-primary" type="submit">Submit</button></div>
+                        <div class="mb-3" style="text-align: center;"><button class="btn" type="submit" style="background-color: #9797ff">Submit</button></div>
                     </form>
                 </div>
             </div>
@@ -215,7 +209,6 @@
 
 
     <script type ="module">
-        //code from official google maps api documentation
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
 
         import { getDatabase , ref, set,onValue} from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
@@ -240,16 +233,22 @@
 
 
 
-       
+        // const app = initializeApp(firebaseConfig);
+        // firebase.initializeApp(firebaseConfig);
+        // const database = firebase.database();
         const app = initializeApp(firebaseConfig);
-       
+        //const database = getDatabase();
+        // const data = snapshot.val();
+        //console.log(data);
 
 
         var user =3;
-        document.getElementById('save').addEventListener('click',function()
-        { console.log("saved")
-            const database = getDatabase();
-          
+        document.getElementById('login').addEventListener('click',function()
+        { const database = getDatabase();
+            // console.log('Lkbkl')
+            // var lat=document.getElementById('lat').innerText
+            // var lng=document.getElementById('lng').innerText
+
             var lat = document.getElementById('formLat').value
             var lng = document.getElementById('formLong').value
 
@@ -328,7 +327,10 @@
                     console.log(x);
                     console.log(y);
 
-                 
+                    //document.getElementById('lat').value = marker.getPosition().lat().toFixed(6);
+                    // document.getElementById('lng').value = marker.getPosition().lng().toFixed(6);
+                    // document.getElementById('lat').innerHTML = marker.getPosition().lat().toFixed(6);
+                    // document.getElementById('lng').innerHTML = marker.getPosition().lng().toFixed(6);
 
                     document.getElementById('formLat').value = marker.getPosition().lat().toFixed(6);
                     document.getElementById('formLong').value = marker.getPosition().lng().toFixed(6);
@@ -356,7 +358,11 @@
 
             // displays a position on two <input> elements
             function displayPosition(pos) {
-             
+                // document.getElementById('lat').value = pos.lat();
+                // document.getElementById('lng').value = pos.lng();
+
+                // document.getElementById('lat').innerHTML = pos.lat();
+                // document.getElementById('lng').innerHTML =pos.lng();
 
                 document.getElementById('formLat').value = pos.lat();
                 document.getElementById('formLong').value =pos.lng();
@@ -368,5 +374,6 @@
     <script defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO_Ai2Qh3utct9OmI3Lmk1Z31t40txtSI&callback=initAutocomplete&libraries=places&v=weekly">
     </script>
+
 </body>
 </html>
