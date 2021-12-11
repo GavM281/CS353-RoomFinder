@@ -1,15 +1,14 @@
-console.log("Hello1");
 const express = require('express'); // require express
-console.log("Hello2");
 const app = express();
 const path = require('path');
 const { v4: uuid } = require('uuid'); // Create a unique id
-
+// app.use(express.static('/assets'));
+app.use(express.static("/assets"));
 
 // Use views directory
 // app.set('views', path.join(__dirname, 'views'));
 
-// app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:false}))
 
 // Connect to Firebase
 const admin=require('firebase-admin');
@@ -21,28 +20,44 @@ admin.initializeApp({
     authDomain: "cs353-roomfinder.firebaseapp.com",
 });
 // Connect to database
-
 var db=admin.database();
 var roomRef=db.ref("rooms");
 
-ref.on('value', (snapshot) => {
-    console.log(snapshot.val());
-}, (errorObject) => {
-    console.log('The read failed: ' + errorObject.name);
-});
-
 
 // default route renders home page
+// default route renders home page
 app.get('/', async (req,res) => {
-    const rooms = await getData(); // Get data
+    // const rooms = await getData(); // Get data
     // console.log("Data: " + rooms); // Print
     // retrieveData();
+
+    roomRef.once("value", function (snapshot) {
+        // console.log(snapshot.val());
+        var list = [];
+        var roomData;
+        snapshot.forEach(function (childSnapshot) {
+            roomData = childSnapshot.val();
+            list.push(roomData);
+        });
+        // let roomData = snapshot.val();
+        console.log(roomData);
+
+        console.log(list);
+        // console.log(snap.name);
+        // snap = JSON.stringify(snap);
+
+        res.render(__dirname+"/home.ejs", { list });
+    }, (errorObject) => {
+        console.log('The read failed: ' + errorObject.name);
+    });
     console.log("Loading home page");
-    res.sendFile(path.join(__dirname+'/home.html'));
+    // res.render("home.ejs", {snap});
+    // res.sendFile(path.join(__dirname+'/home.html'));
 })
 
 // Render newroom page
 app.get('/newroom', (req,res) => {
+    // res.render('newroom');
     console.log("Loading newRoom page");
     res.sendFile(path.join(__dirname+'/newroom.html'));
 })
@@ -51,13 +66,14 @@ app.get('/newroom', (req,res) => {
 app.post('/newroom', async (req,res) => {
     var userData = req.body; // Save data
 
-    console.log("User input was:");
+    console.log("User input");
     console.log("Name: " + userData.name);
     console.log("price: " + userData.price);
     console.log("details: " + userData.details);
     console.log("imageURL: " + userData.imageURL);
     console.log("formLat: " + userData.formLat);
     console.log("formLong: " + userData.formLong);
+
 
     // Call method to create room in firebase, uuid() gives the room a unique id
     writeRoomData(uuid(),userData.name, userData.price,userData.details, userData.imageURL, userData.formLat, userData.formLong);
@@ -99,23 +115,66 @@ function writeRoomData(userId, name, price, details, imageUrl, formLat, formLong
         details: details,
         picture: imageUrl,
         latitude: formLat,
-        longitude: formLong
+        longitude: formLong,
+        id: userId // Adding as child so that id can be found for deleting
     });
 }
 
-// Get rooms from database
-function getData(){
-    roomRef.on('value', (snapshot) => {
-        console.log(snapshot.val());
-        let snap = snapshot.val();
-        return JSON.stringify(snap);
-    })
-}
-
+// // Get rooms from database
+// function getData(){
+//     roomRef.on('value', (snapshot) => {
+//         console.log(snapshot.val());
+//         return snapshot.val()
+//     }, (errorObject) => {
+//         console.log('The read failed: ' + errorObject.name);
+//     });
+// }
 
 // Retrieve data and create a list to display
-function retrieveData() {
-    
+function retrieveData(doc) {
+    const roomList = document.querySelector('#room-list');
+    let li = document.createElement('li');
+    let details = document.createElement('span');
+    let latitude = document.createElement('span');
+    let longitude = document.createElement('span');
+    let name = document.createElement('span');
+    let picture = document.createElement('span');
+    let price = document.createElement('span');
+
+    li.setAttribute('data-id', doc.id);
+    details.textContent = doc.data().details;
+    latitude.textContent = doc.data().latitude;
+    longitude.textContent = doc.data().longtitude;
+    name.textContent = doc.data().name;
+    picture.textContent = doc.data().picture;
+    price.textContent = doc.data().price;
+
+    li.appendChild(details);
+    li.appendChild(latitude);
+    li.appendChild(longitude);
+    li.appendChild(name);
+    li.appendChild(picture);
+    li.appendChild(price);
+
+    roomList.appendChild(li);
+}
+
+// db.collection('rooms').get().then((snapshot) => {
+//     snapshot.docs.forEach(doc => {
+//         retrieveData(doc);
+//     })
+// })
+
+
+
+// Update data
+function updateData (colName, docID, det, name, pic, price) {
+    db.collection(colName).doc(docID).set({
+        details: det,
+        name: name,
+        picture: pic,
+        price: price
+    })
 }
 
 // listen on port 3000
