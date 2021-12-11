@@ -49,12 +49,24 @@
 
     
     <!-- Button -->
-    <div class="form-groupBook">
-        <label class="col-md-4 control-label" for="book"></label>
-        <div class="col-md-4">
-        <button id="book" name="book" class="btn btn-primary"><h5>Contact Seller</h5></button>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+        <script type="text/javascript">
+        (function() {
+        emailjs.init("user_kb0j1LeBTtvx42pguYLHy");
+        })();
+        </script>
+    <div id="sidebar">
+        <div class="toggle-btn" onclick ="show()">
+            <div class="col-md-4">
+            <button id="book" name="book" class="btn btn-primary"><h5>Contact Seller</h5></button>   
         </div>
-    </div>
+        </div>
+        <input type="text" id="fromName" placeholder="Enter Name">
+        <input type="text" id="fromEmail" placeholder="Enter Email">
+        <input type="textarea" id="message" placeholder="Enter Message">
+        <button id="send" class="btn btn-primary" onclick='sendMail()'>Send Email</button>
+    </body>
+      </div>
     <script type ="module">
 
 
