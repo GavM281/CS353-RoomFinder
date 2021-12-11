@@ -155,9 +155,10 @@ button{
     signInWithPopup(auth, provider).then(res=>{
 
       console.log('logged in')
+     window.location.href = "home.html";
       document.getElementById('LoginScreen').style.display="none"
       document.getElementById('dashboard').style.display="block"
-      window.location.href = "home.html";
+     
 
     }).catch(e=>{
       console.log(e)
@@ -172,12 +173,12 @@ button{
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        //
+       // window.location.href = "home.html";
         document.getElementById('LoginScreen').style.display="none"
         document.getElementById('dashboard').style.display="block"
         const uid = user.uid;
         console.log(user.email +'user is signed in' + uid)
-        window.location.href = "home.html";
+       
 
       } else {
         // User is signed out
