@@ -96,29 +96,17 @@ button{
   </div>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
    
-    <!-- 
-      
-       <script>
-     document.getElementById('login').addEventListener('click',function()
-      {
-        window.alert("login fa");
-
-      })
-      </script>
+ 
       
       
-      TODO: Add SDKs for Firebase products that you want to use
+     <!---TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
 
 
     
     <script type ="module">
-      document.getElementById('logout').addEventListener('click',function()
-      {
-        //window.alert("login fa");
-
-      })
+     
 
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-analytics.js";
@@ -189,6 +177,7 @@ button{
         document.getElementById('dashboard').style.display="block"
         const uid = user.uid;
         console.log(user.email +'user is signed in' + uid)
+        window.location.href = "home.html";
 
       } else {
         // User is signed out
