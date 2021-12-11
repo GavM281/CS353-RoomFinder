@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js"></script>
+  <title>Home</title>
+
+  <!--    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+  <link rel="stylesheet" href="assets/css/gradient-navbar-1.css">
+  <link rel="stylesheet" href="assets/css/gradient-navbar.css">
+  <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
+  <link rel="stylesheet" href="assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+<nav class="navbar navbar-dark navbar-expand-md" id="app-navbar">
+  <div class="container"><a class="navbar-brand" href="home.html"><i class="icon ion-ios-infinite" id="brand-logo"></i></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <button class="btn "><a href="/newroom">Create Room</a></button>
+    <button class="btn "><a href="/log">Log in</a></button>
+    <div class="collapse navbar-collapse" id="navcol-2">
+      <ul class="navbar-nav ml-auto">
+        <li id="accountButton" class="nav-item"><a class="nav-link active" href="account.html">Account</a></li>
+        <button id="logoutButton">Logout</button>
+      </ul>
+    </div>
+    <div class="d-flex align-items-center">
+      <label class="form-label d-flex mb-0" for="search-field">
+
+      </label>
+
+      <form class="me-auto search-form" target="_self">
+        <input id="search-field" class="form-control search-field" type="search" name="search" />
+      </form><a class="btn btn-light action-button" role="button" href="#"><i class="fa fa-search"></i></a>
+    </div>
+  </div>
+</nav>
+
+<!--<script src="assets/bootstrap/js/bootstrap.min.js"></script>-->
+<script src="assets/js/Off-Canvas-Sidebar-Drawer-Navbar.js"></script>
+<script src="assets/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js"></script>
+
+
+<section class="highlight-phone">
+  <div class="jumbotron">
+
+    <!--loops through every entry from the list passed in and adds them to html-->
+    <% for( let room of list ){ %>
+      <div class="card rounded-corners" style=" border: 1px solid black;">
+        <div class="row" style="width:100%; padding: 20px;">
+
+          <!--      33% width-->
+          <div class="col-md-4"><img src="<%=room.picture%>" alt="Room image" style="max-width: 100%;" /></div>
+
+          <!--      33% width-->
+          <div class="col-md-4">
+            <div class="intro">
+              <h1><%= room.name %></h1>
+              <p><%= room.details%></p>
+              <h4><b>€<%= room.price%></b> / month</h4>
+<!--              <a class="btn btn-primary" role="button" href="#">View</a>-->
+              <a class="btn btn-primary" role="button" href="/deleteroom/<%=room.id%>">Delete</a>
+  <!--            <br>-->
+  <!--            <br>-->
+            </div>
+          </div>
+
+
+    <!--      33% width-->
+<!--          <div class="col-md-4 rounded-corners"><iframe allowfullscreen frameborder="0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyD-3-QEHpgnhneCKlo5-rnQPX_mOd9hmNo&amp;center=<%=room.latitude%>%2C<%=room.longitude%>&amp;zoom=16" loading="lazy" width="100%" height="100%" style="max-height: 100%;max-width: 100%;"></iframe></div>-->
+
+        </div>
+      </div>
+  <!--  <br>-->
+  <!--  <br>-->
+  <!--  <br>-->
+    <% }%>
+  </div>
+</section>
+<script>
+  // var map = new google.maps.Map(document.getElementById('map'), {
+  // center: {lat: 51.4960714, lng: -0.102279},
+  // zoom: 13
+  //
+  // });
+</script>
+
+
+<div class="SideMenu">
+  <form id="sideForm">
+    <div class="card">
+      <article class="card-group-item">
+        <header class="card-header">
+          <h6 class="title">Range input </h6>
+        </header>
+        <div class="filter-content">
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Min</label>
+                <input type="number" class="form-control" id="inputEmail4" placeholder="€0">
+              </div>
+              <div class="form-group col-md-6 text-right">
+                <label>Max</label>
+                <input type="number" class="form-control" placeholder="€1,0000">
+              </div>
+            </div>
+          </div> <!-- card-body.// -->
+        </div>
+      </article> <!-- card-group-item.// -->
+      <article class="card-group-item">
+        <header class="card-header">
+          <h6 class="title">Selection </h6>
+        </header>
+        <div class="filter-content">
+          <div class="card-body">
+            <div class="custom-control custom-checkbox">
+              <span class="float-right badge badge-light round"></span>
+              <input type="checkbox" class="custom-control-input" id="Check1">
+              <label class="custom-control-label" for="Check1">Val1</label>
+            </div> <!-- form-check.// -->
+
+            <div class="custom-control custom-checkbox">
+              <span class="float-right badge badge-light round"></span>
+              <input type="checkbox" class="custom-control-input" id="Check2">
+              <label class="custom-control-label" for="Check2">Val2</label>
+            </div> <!-- form-check.// -->
+
+            <div class="custom-control custom-checkbox">
+              <span class="float-right badge badge-light round"></span>
+              <input type="checkbox" class="custom-control-input" id="Check3">
+              <label class="custom-control-label" for="Check3">Val3</label>
+            </div> <!-- form-check.// -->
+
+            <div class="custom-control custom-checkbox">
+              <span class="float-right badge badge-light round"></span>
+              <input type="checkbox" class="custom-control-input" id="Check4">
+              <label class="custom-control-label" for="Check4">Val4</label>
+            </div> <!-- form-check.// -->
+          </div> <!-- card-body.// -->
+        </div>
+      </article> <!-- card-group-item.// -->
+    </div> <!-- card.// -->
+  </form>
+</div>
+
+
+
+<script type ="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-analytics.js";
+
+  import { getAuth, signInWithPopup, GoogleAuthProvider ,onAuthStateChanged,  signOut} from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
+
+  var db=admin.database();
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    // Paste your Config Code
+
+    apiKey: "AIzaSyApZIgN87Jy6iOjkmhk0QGkhDAHzgr4JhI",
+    authDomain: "cs353-18d8f.firebaseapp.com",
+    projectId: "cs353-18d8f",
+    storageBucket: "cs353-18d8f.appspot.com",
+    messagingSenderId: "100988194529",
+    appId: "1:100988194529:web:7ff7397346fd01189231a0",
+    measurementId: "G-F61ZBZGL76"
+
+  };
+
+  const app = initializeApp(firebaseConfig);
+  document.getElementById('dashboard').style.display="none"
+  const auth = getAuth();
+
+  const provider = new GoogleAuthProvider();
+  // const auth = getAuth();
+
+  document.getElementById('logoutButton').addEventListener('click', LogoutUser)
+
+  //checks if user is already logged in, user doesnt have to login in again
+
+  function checkauthstate(){
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        //
+        document.getElementById('LoginScreen').style.display="none"
+        document.getElementById('dashboard').style.display="block"
+        const uid = user.uid;
+        console.log(user.email +'user is signed in' + uid)
+
+      } else {
+        // User is signed out
+
+        console.log('user out')
+      }
+
+    });
+  }
+
+  //log out
+  function LogoutUser(){
+    console.log('Logout Btn Call')
+
+    auth.signOut().then(()=>{
+
+      console.log('logged out')
+      document.getElementById('LoginScreen').style.display="block"
+      document.getElementById('dashboard').style.display="none"
+
+      //window.location.href="logout .html"; to move to different pages
+
+    }).catch(e=>{
+      console.log(e)
+    })
+
+  }
+
+  checkauthstate()
+</script>
+
+
+
+
+<style>
+  /*navbar*/
+  #brand-logo {
+    font-size: 34px;
+  }
+
+  #app-navbar {
+    background: linear-gradient(120deg, #00e4d0, #5983e8);
+  }
+
+  .navigation-clean-search {
+    background: #fff;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    color: #333;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    margin-bottom: 0;
+  }
+
+  @media (min-width:768px) {
+    .navigation-clean-search {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+  }
+
+  .navigation-clean-search .navbar-brand {
+    font-weight: bold;
+    color: inherit;
+  }
+
+  .navigation-clean-search .navbar-brand:hover {
+    color: #222;
+  }
+
+  .navigation-clean-search .navbar-toggler {
+    border-color: #ddd;
+  }
+
+  .navigation-clean-search .navbar-toggler:hover, .navigation-clean-search .navbar-toggler:focus {
+    background: none;
+  }
+
+  .navigation-clean-search .navbar-toggler {
+    color: #888;
+  }
+
+  .navigation-clean-search .navbar-collapse, .navigation-clean-search .search-form {
+    border-top-color: #ddd;
+  }
+
+  .navigation-clean-search .navbar-nav a.active, .navigation-clean-search .navbar-nav > .show > a {
+    background: none;
+    box-shadow: none;
+  }
+
+  .navigation-clean-search.navbar-light .navbar-nav a.active, .navigation-clean-search.navbar-light .navbar-nav a.active:focus, .navigation-clean-search.navbar-light .navbar-nav a.active:hover {
+    color: #8f8f8f;
+    box-shadow: none;
+    background: none;
+    pointer-events: none;
+  }
+
+  .navigation-clean-search.navbar .navbar-nav .nav-link {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .navigation-clean-search.navbar-light .navbar-nav .nav-link {
+    color: #465765;
+  }
+
+  .navigation-clean-search.navbar-light .navbar-nav .nav-link:focus, .navigation-clean-search.navbar-light .navbar-nav .nav-link:hover {
+    color: #37434d !important;
+    background-color: transparent;
+  }
+
+  /*.navigation-clean-search .action-button, .navigation-clean-button .action-button:active {*/
+  /*  background: #56c6c6;*/
+  /*  border-radius: 20px;*/
+  /*  font-size: inherit;*/
+  /*  color: #fff !important;*/
+  /*  box-shadow: none;*/
+  /*  border: none;*/
+  /*  text-shadow: none;*/
+  /*  padding: 8px 20px;*/
+  /*  transition: background-color 0.25s;*/
+  /*}*/
+
+  .navigation-clean-search .action-button:hover, .navigation-clean-search .action-button:focus {
+    background: #66d7d7;
+  }
+
+  .navigation-clean-search .search-form label {
+    color: #ccc;
+  }
+
+  .navigation-clean-search .search-form .search-field {
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    color: #ccc;
+    box-shadow: none;
+    color: inherit;
+    transition: border-bottom-color 0.3s;
+  }
+
+  @media (max-width:767px) {
+    .navigation-clean-search .search-form .search-field {
+      display: inline-block;
+      width: 80%;
+    }
+  }
+
+  .navigation-clean-search .search-form .search-field:focus {
+    border-bottom: 1px solid #ccc;
+  }
+
+
+
+
+
+
+
+  .rounded-corners{
+    border-radius: 12px;
+  }
+
+  .form-group{
+    padding: 1%;
+  }
+
+  body{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  #icon{
+    position: relative;
+    top: 50%;
+    left: 2%;
+    transform: translateY(-50%);
+    width:60px;
+    height:60px;
+    border-radius: 50%;
+  }
+  #icon:hover{
+    background-color: rgb(0, 0, 88);
+  }
+
+  #icon2{
+    position: relative;
+    margin: auto;
+    width: 25px;
+    height: 25px;
+  }
+
+  .NavBar{
+    /*position: sticky;*/
+    background-color: navy;
+    /*text-align: center;*/
+    margin: 0;
+    height: 80px;
+    width: 100%;
+    border-bottom: 3px solid white;
+  }
+
+  #Search{
+    /* border: 3px solid black; */
+    width: 300px;
+    /*position: absolute;*/
+    right:100px;
+    top: 10px;
+  }
+
+  #sButton{
+    /*float: right;*/
+    border: none;
+    width: 17.6%;
+    height: 100%;
+    border-radius: 5%;
+    /* background-color: darkgoldenrod; */
+  }
+
+  #sInput{
+    border: none;
+    border-right: 3px solid navy;
+    width: 80%;
+    height: 53px;
+    border-radius: 2%;
+  }
+
+  .SideMenu{
+    display: inline-block;
+    /*display: inline;*/
+    height: 100%;
+    width: 20%;
+    min-width: 200px;
+    /* background-color: white; */
+    border-right: 2px solid lightgray;
+    /* border-bottom: 3px solid black; */
+    border-top: 0px solid black;
+  }
+
+  #content_list{
+    position: absolute;
+    width: 75%;
+    left: 350px;
+    top: 120px;
+  }
+
+  #a_content_list{
+    position: absolute;
+    width: 75%;
+    left: 12.5%;
+    top: 120px;
+  }
+
+  .item{
+    border-top: 3px solid lightgray;
+    border-bottom: 3px solid lightgray;
+    /* border-radius: 0.5%; */
+    height: 200px;
+  }
+  .item:hover{
+    background-color: lightgrey;
+  }
+
+  .sideInput{
+
+    width: 90%;
+    height: 100%;
+    margin: 4%;
+    margin-top: 15%;
+    margin-bottom: 15%;
+    border: 3px solid black;
+    border-radius: 3%;
+  }
+
+
+  #accountLink{
+    position: absolute;
+    right:20px;
+    top: 10px;
+    border: 3px solid white;
+    border-radius: 5%;
+  }
+  #accountLink:hover{
+    background-color: rgb(0, 0, 88);
+  }
+
+  /*account*/
+
+  .itemX, .itemE{
+    /*background-color: rgb(155, 1, 1);*/
+    width: 25px;
+    height: 25px;
+    /* border-left: 3px solid lightgray;
+    border-bottom: 3px solid lightgray;
+    border-right: 3px solid lightgray; */
+    position: absolute;
+    right: 2px;
+    top: 2px
+  }
+  .itemX:hover{
+    background-color: lightgrey;
+  }
+
+  .itemE{
+    /*background-color: rgb(0, 0, 160);*/
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    right: 29px;
+  }
+  .itemE:hover{
+    background-color: lightgrey;
+  }
+
+  #propertyForm{
+    /*text-align: center;*/
+    display: none;
+    position: relative;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    /* padding-top: 100px; */
+    margin: auto;
+    height: 90%;
+    width: 50%;
+    background-color: aliceblue;
+    border: 2px solid gray;
+    top: 5px;
+  }
+
+  fieldset{
+    border: none;
+  }
+
+  #itemX2{
+    /* border-bottom: 2px solid gray;
+    border-left: 2px solid gray; */
+    right: 0px;
+    top: 0px
+  }
+
+  .form-groupBook{
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  #book{
+    width: 100px;
+    height: 70px;
+  }
+
+
+  button{
+    /*  padding-top: 200px;
+      padding-bottom: 100px;*/
+    display: block;
+    width: 100%;
+    /*padding: 25px 40px;*/
+
+    border: none;
+    background: #a29bfe;
+    outline: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    color: #FFF;
+    cursor: pointer;
+    transition: .3s;
+  }
+
+
+
+  /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #f1f1f1;
+  }
+
+
+</style>
+</body>
+</html>
