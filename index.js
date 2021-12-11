@@ -190,3 +190,22 @@ function display() {
 function hide() {
     propertyForm.style.display = "none";
 }
+
+/*sidebar*/
+function show() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+
+  /*email function*/
+  function sendMail(params) {
+    var tempParams = {
+        from_name: document.getElementById("fromName").value,
+        from_email:document.getElementById("fromEmail").value,
+        message: document.getElementById("message").value,
+    };
+
+    emailjs.send('service_zbmfupf','template_z4zis3x',tempParams)
+    .then(function(res){
+        console.log();
+    })
+    }
