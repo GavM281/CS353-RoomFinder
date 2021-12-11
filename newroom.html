@@ -184,7 +184,7 @@
 <!--                        <li>Longitude: <span id="lng"></span></li>-->
 <!--                    </ul>-->
 
-                    <button class="btn btn-primary" id="login">Save Marker</button>
+                    <button class="btn btn-primary" id="save">Save Marker</button>
 
                     <br>
 
@@ -215,6 +215,7 @@
 
 
     <script type ="module">
+        //code from official google maps api documentation
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
 
         import { getDatabase , ref, set,onValue} from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
@@ -239,22 +240,15 @@
 
 
 
-        // const app = initializeApp(firebaseConfig);
-        // firebase.initializeApp(firebaseConfig);
-        // const database = firebase.database();
+       
         const app = initializeApp(firebaseConfig);
-        //const database = getDatabase();
-        // const data = snapshot.val();
-        //console.log(data);
+       
 
 
         var user =3;
-        document.getElementById('login').addEventListener('click',function()
+        document.getElementById('save').addEventListener('click',function()
         { const database = getDatabase();
-            // console.log('Lkbkl')
-            // var lat=document.getElementById('lat').innerText
-            // var lng=document.getElementById('lng').innerText
-
+          
             var lat = document.getElementById('formLat').value
             var lng = document.getElementById('formLong').value
 
@@ -333,10 +327,7 @@
                     console.log(x);
                     console.log(y);
 
-                    //document.getElementById('lat').value = marker.getPosition().lat().toFixed(6);
-                    // document.getElementById('lng').value = marker.getPosition().lng().toFixed(6);
-                    // document.getElementById('lat').innerHTML = marker.getPosition().lat().toFixed(6);
-                    // document.getElementById('lng').innerHTML = marker.getPosition().lng().toFixed(6);
+                 
 
                     document.getElementById('formLat').value = marker.getPosition().lat().toFixed(6);
                     document.getElementById('formLong').value = marker.getPosition().lng().toFixed(6);
@@ -364,11 +355,7 @@
 
             // displays a position on two <input> elements
             function displayPosition(pos) {
-                // document.getElementById('lat').value = pos.lat();
-                // document.getElementById('lng').value = pos.lng();
-
-                // document.getElementById('lat').innerHTML = pos.lat();
-                // document.getElementById('lng').innerHTML =pos.lng();
+             
 
                 document.getElementById('formLat').value = pos.lat();
                 document.getElementById('formLong').value =pos.lng();
