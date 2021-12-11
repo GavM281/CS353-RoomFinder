@@ -4,8 +4,72 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+   
     <title>Firebase Auth: Google - TechFerment</title>
+    <style>
+   
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url("sky.jpg");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+}
+
+.container {
+    width: 400px;
+    min-height: 400px;
+    background: #FFF;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+    padding: 40px 30px;
+}
+
+h1{
+    padding-bottom: 70px;
+    padding-top: 50px;
+    text-align: center;
+   
+}
+
+
+button{
+  /*  padding-top: 200px;
+    padding-bottom: 100px;*/
+    display: block;
+    width: 100%;
+    padding: 25px 40px;
+    
+    border: none;
+    background: #a29bfe;
+    outline: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    color: #FFF;
+    cursor: pointer;
+    transition: .3s;
+ 
+   
+    
+}
+
+
+
+
+      </style>
   </head>
 
 
@@ -18,7 +82,7 @@
       <br>
 
       <!--just for me to see if the users were getting signed in and out properly  -->
-      <button id="s">Check If User Is Signed In</button>
+      
     </div>
 
       <div id="dashboard">
@@ -95,67 +159,75 @@
        // const auth = getAuth();
 
 
+       document.getElementById('logout').addEventListener('click', LogoutUser)
 
-       document.getElementById('login').addEventListener('click',function()
-      {
-        console.log('Login Btn Call')
 
-         signInWithPopup(auth, provider).then(res=>{
-          
-          document.getElementById('LoginScreen').style.display="none"
-          document.getElementById('dashboard').style.display="block"
-          
-         // showUserDetails(res.user)
-        }).catch(e=>{
-          console.log(e)
-        })
+       //login
+  document.getElementById('login').addEventListener('click',function()
+  {
+    console.log('Login Btn Call')
 
-      
+
+    signInWithPopup(auth, provider).then(res=>{
+
+      console.log('logged in')
+      document.getElementById('LoginScreen').style.display="none"
+      document.getElementById('dashboard').style.display="block"
+      window.location.href = "home.html";
+
+    }).catch(e=>{
+      console.log(e)
+    })
+
+
+  });
+
+  //checks if user is already logged in, user doesnt have to login in again
+
+  function checkauthstate(){
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        //
+        document.getElementById('LoginScreen').style.display="none"
+        document.getElementById('dashboard').style.display="block"
+        const uid = user.uid;
+        console.log(user.email +'user is signed in' + uid)
+
+      } else {
+        // User is signed out
+
+        console.log('user out')
+      }
+
+
+
     });
-
-       document.getElementById('logout').addEventListener('click',function()
-
+  }
 
 
+  //log out
+  function LogoutUser(){
+    console.log('Logout Btn Call')
 
-            {
-                 auth.signOut().then(()=>{
+    auth.signOut().then(()=>{
 
-               console.log('jh')
-               document.getElementById('LoginScreen').style.display="block"
-              document.getElementById('dashboard').style.display="none"
-              //window.location.href="logout .html";
+      console.log('logged out')
+      document.getElementById('LoginScreen').style.display="block"
+      document.getElementById('dashboard').style.display="none"
 
-            }).catch(e=>{
-            console.log(e)
-            })
+      //window.location.href="logout .html"; to move to different pages
 
-            });
-
-            document.getElementById('s').addEventListener('click',function()
-
-{
-   
+    }).catch(e=>{
+      console.log(e)
+    })
 
 
+  }
 
 
-  //check if useer is signed in 
-              onAuthStateChanged(auth, (user) => {
-              if (user) {
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/firebase.User
-                const uid = user.uid;
-                console.log('user in')
-                // ...
-              } else {
-                // User is signed out
-                // ...
-                console.log('user out')
-              }
-            });
+  checkauthstate()
 
-            });
            
       //*/
     </script>

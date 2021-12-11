@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
   <title>Firebase Auth: Google - TechFerment</title>
+  
 </head>
 
 
@@ -95,6 +96,7 @@
       console.log('logged in')
       document.getElementById('LoginScreen').style.display="none"
       document.getElementById('dashboard').style.display="block"
+      window.location.href = "home.html";
 
     }).catch(e=>{
       console.log(e)
