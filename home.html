@@ -118,10 +118,22 @@
       
       
       
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-          // Paste your Config Code
+   
       
+      
+        var db=admin.database();
+   
+
+     
+     
+      
+
+      
+      
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        // Paste your Config Code
+    
           apiKey: "AIzaSyApZIgN87Jy6iOjkmhk0QGkhDAHzgr4JhI",
           authDomain: "cs353-18d8f.firebaseapp.com",
           projectId: "cs353-18d8f",
@@ -130,11 +142,80 @@
           appId: "1:100988194529:web:7ff7397346fd01189231a0",
           measurementId: "G-F61ZBZGL76"
       
-        };
+      };
+
       
       
-        var db=admin.database();
-        const app = initializeApp(firebaseConfig);
+      const app = initializeApp(firebaseConfig);
+      document.getElementById('dashboard').style.display="none"
+      const auth = getAuth();
+      //document.getElementById('login').addEventListener('click', GoogleLogin)
+
+  // let provider = new firebase.auth.GoogleAuthProvider()
+      const provider = new GoogleAuthProvider();
+       // const auth = getAuth();
+
+
+       document.getElementById('logoutButton').addEventListener('click', LogoutUser)
+
+
+  
+
+  //checks if user is already logged in, user doesnt have to login in again
+
+  function checkauthstate(){
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        //
+        document.getElementById('LoginScreen').style.display="none"
+        document.getElementById('dashboard').style.display="block"
+        const uid = user.uid;
+        console.log(user.email +'user is signed in' + uid)
+
+      } else {
+        // User is signed out
+
+        console.log('user out')
+      }
+
+
+
+    });
+  }
+
+
+  //log out
+  function LogoutUser(){
+    console.log('Logout Btn Call')
+
+    auth.signOut().then(()=>{
+
+      console.log('logged out')
+      document.getElementById('LoginScreen').style.display="block"
+      document.getElementById('dashboard').style.display="none"
+
+      //window.location.href="logout .html"; to move to different pages
+
+    }).catch(e=>{
+      console.log(e)
+    })
+
+
+  }
+
+
+  checkauthstate()
+
+
+
+
+
+
+
+
+
+
     </script>      
 
 </body>
