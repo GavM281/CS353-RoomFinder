@@ -247,7 +247,8 @@
 
         var user =3;
         document.getElementById('save').addEventListener('click',function()
-        { const database = getDatabase();
+        { console.log("saved")
+            const database = getDatabase();
           
             var lat = document.getElementById('formLat').value
             var lng = document.getElementById('formLong').value
