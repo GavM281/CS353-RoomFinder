@@ -4,18 +4,24 @@
     <meta charset="UTF-8">
     <title>New Room</title>
 <!--    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">-->
+
+<!--    Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
-<!--    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">-->
+    <!--  Font Awesome-->
+    <script src="https://kit.fontawesome.com/63302ef58e.js" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
     <link rel="stylesheet" type="text/css" href="style.css">
 
-<!--    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">-->
-<!--    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">-->
-<!--    <link rel="stylesheet" href="assets/css/gradient-navbar-1.css">-->
-<!--    <link rel="stylesheet" href="assets/css/gradient-navbar.css">-->
-<!--    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">-->
-<!--    <link rel="stylesheet" href="assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css">-->
+    <link rel="stylesheet" href="fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="fonts/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/gradient-navbar-1.css">
+    <link rel="stylesheet" type="text/css" href="css/gradient-navbar.css">
+    <link rel="stylesheet" type="text/css" href="css/Navigation-with-Search.css">
+    <link rel="stylesheet" type="text/css" href="css/Off-Canvas-Sidebar-Drawer-Navbar.css">
 
 
 
@@ -49,6 +55,14 @@
 
 </head>
 <style>
+    .rounded-corners{
+        border-radius: 12px;
+    }
+
+    .shadow{
+        box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.1);
+    }
+
     .login-clean {
         /*background: #f1f7fc;*/
         padding: 80px 0;
@@ -111,8 +125,6 @@
         /*text-decoration: none;*/
     }
 
-
-
     #createForm{
         box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
         background-color: #ffffff;
@@ -131,7 +143,7 @@
     }
 
     #pac-input{
-        padding: 10px;
+        padding: 11px;
         margin-top: 10px;
     }
 
@@ -139,55 +151,43 @@
 
 <body>
 
-    <nav class="navbar navbar-dark navbar-expand-md" id="app-navbar">
-        <div class="container-fluid"><a class="navbar-brand" href="home.html"><i class="icon ion-ios-infinite" id="brand-logo"></i></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <button class="btn "><a href="/">Back to Home</a></button>
-            <button class="btn "><a href="/log">Log in</a></button>
+    <nav class="navbar navbar-dark navbar-expand-md shadow" id="app-navbar">
+        <div class="container-fluid"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <a href="/"><img src="Logo.png" style="max-height: 3em;"></a> <!-- Show logo, redirect home when clicked -->
+            <button class="btn"><a href="/" style="color: #939393"><b>Back to Home</b></a></button>
+            <button class="btn"><a href="/log" style="color: #939393"><b>Log in</b></a></button>
 
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link active" href="account.html">Account</a></li>
                 </ul>
             </div>
-            <div class="d-flex align-items-center">
-                <label class="form-label d-flex mb-0" for="search-field">
 
-                </label>
-
-                <form class="me-auto search-form" target="_self">
-                    <input id="search-field" class="form-control search-field" type="search" name="search" />
-                </form><a class="btn btn-light action-button" role="button" href="#"><i class="fa fa-search"></i></a>
-            </div>
         </div>
     </nav>
 
     <section class="login-clean">
-
-        <div class="container" id="createForm">
+        <div class="container shadow" id="createForm" style="margin-top: -2em;">
             <h2 class="display-2" style="border-bottom-width: 1px;border-bottom-style: solid;text-align: center;margin-bottom: 15px; margin-top: -20px;">New Room</h2>
 
             <div class="row">
-
                 <!-- Map-->
-                <div id ="container2" class="col-md-6">
-
+                <div id ="container2" class="col-md-6 col-sm-12">
                     <input
                             id="pac-input"
                             class="controls"
                             type="text"
-                            placeholder="Search Box"
+                            placeholder="Enter Eircode or search"
                     />
                     <div id="map"></div>
-
+                    <button class="btn btn-default"><a href="https://finder.eircode.ie/#">Find your Eircode</a></button>
 <!--                    <ul class="geo-data">-->
 <!--                        <li>Latitude: <span id="lat"></span></li>-->
 <!--                        <li>Longitude: <span id="lng"></span></li>-->
 <!--                    </ul>-->
 
-                    <button class="btn btn-primary" id="save">Save Marker</button>
-
-                    <br>
-
+<!--                    <button class="btn btn-primary" id="login">Save Marker</button>-->
+<!--                    <br>-->
                     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
                     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
                     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
@@ -195,27 +195,25 @@
 
 
                 <!-- Form-->
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-12">
                     <form action="/newroom" method="POST" style="min-width: 40%;border-radius: 12px;">
                         <div class="mb-3"><input class="form-control" type="text" name="name" placeholder="Name" required></div>
-                        <div class="mb-3"><input class="form-control" type="number" placeholder="Price" name="price" required></div>
-                        <div class="mb-3"><textarea class="form-control" placeholder="Details" name="details" required></textarea></div>
-                        <!--        <div class="mb-3"><input class="form-control" type="file" name="Image"></div>-->
-                        <div class="mb-3"><input class="form-control" type="text" placeholder="Image URL" name="imageURL"></div>
+                        <div class="mb-3"><input class="form-control" type="number" name="price" placeholder="Price"  required></div>
+                        <div class="mb-3"><textarea class="form-control" name="details" placeholder="Details"  required></textarea></div>
 
-                        <div class="mb-3"><input class="form-control" type="text" placeholder="Latitude" name="formLat" id="formLat"></div>
-                        <div class="mb-3"><input class="form-control" type="text" placeholder="Longitude" name="formLong" id="formLong"></div>
+                        <div class="mb-3"><input class="form-control" type="text" name="imageURL" placeholder="Copy a URL for your image"></div>
 
-                        <div class="mb-3" style="text-align: center;"><button class="btn btn-primary" type="submit">Submit</button></div>
+                        <div class="mb-3"><input class="form-control" type="text" name="formLat" placeholder="Latitude" id="formLat"></div>
+                        <div class="mb-3"><input class="form-control" type="text" name="formLong" placeholder="Longitude" id="formLong"></div>
+
+                        <div class="mb-3" style="text-align: center;"><button class="btn" type="submit" style="background-color: #9797ff">Submit</button></div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-
     <script type ="module">
-        //code from official google maps api documentation
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
 
         import { getDatabase , ref, set,onValue} from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
@@ -238,18 +236,15 @@
             measurementId: "G-F61ZBZGL76"
         };
 
-
-
-       
+        
         const app = initializeApp(firebaseConfig);
-       
-
-
+        
         var user =3;
-        document.getElementById('save').addEventListener('click',function()
-        { console.log("saved")
-            const database = getDatabase();
-          
+        document.getElementById('login').addEventListener('click',function()
+        { const database = getDatabase();
+            // var lat=document.getElementById('lat').innerText
+            // var lng=document.getElementById('lng').innerText
+
             var lat = document.getElementById('formLat').value
             var lng = document.getElementById('formLong').value
 
@@ -267,9 +262,8 @@
     <script>
         function initAutocomplete() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 51.4960714, lng: -0.102279},
-                zoom: 13
-
+                center: {lat: 53.3796717, lng: -6.5874938}, // Centers on Maynooth
+                zoom: 13 // Level of Zoom, higher is more zoomed in
             });
 
             // Create the search box and link it to the UI element.<input id="lat" type="text">
@@ -328,7 +322,10 @@
                     console.log(x);
                     console.log(y);
 
-                 
+                    //document.getElementById('lat').value = marker.getPosition().lat().toFixed(6);
+                    // document.getElementById('lng').value = marker.getPosition().lng().toFixed(6);
+                    // document.getElementById('lat').innerHTML = marker.getPosition().lat().toFixed(6);
+                    // document.getElementById('lng').innerHTML = marker.getPosition().lng().toFixed(6);
 
                     document.getElementById('formLat').value = marker.getPosition().lat().toFixed(6);
                     document.getElementById('formLong').value = marker.getPosition().lng().toFixed(6);
@@ -356,7 +353,11 @@
 
             // displays a position on two <input> elements
             function displayPosition(pos) {
-             
+                // document.getElementById('lat').value = pos.lat();
+                // document.getElementById('lng').value = pos.lng();
+
+                // document.getElementById('lat').innerHTML = pos.lat();
+                // document.getElementById('lng').innerHTML =pos.lng();
 
                 document.getElementById('formLat').value = pos.lat();
                 document.getElementById('formLong').value =pos.lng();

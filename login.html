@@ -5,9 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    
-    <title>Firebase Auth: Google - TechFerment</title>
+    <title>Log in</title>
+
+<!--    Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <!--  Font Awesome-->
+    <script src="https://kit.fontawesome.com/63302ef58e.js" crossorigin="anonymous"></script>
+
+<!--    Fonts-->
+    <link rel="stylesheet" href="fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="fonts/ionicons.min.css">
+
+<!--    CSS-->
+    <link rel="stylesheet" type="text/css" href="css/gradient-navbar-1.css">
+    <link rel="stylesheet" type="text/css" href="css/gradient-navbar.css">
+    <link rel="stylesheet" type="text/css" href="css/Navigation-with-Search.css">
+
     <style>
-   
+
+    .rounded-corners{
+      border-radius: 12px;
+    }
+
+    .shadow{
+      box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.1);
+    }
 
 * {
     margin: 0;
@@ -24,9 +48,16 @@ body {
     background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url("sky2.jpg");
     background-position: center;
     background-size: cover;
-    display: flex;
+    /*display: flex;*/
     justify-content: center;
     align-items: center ;
+}
+
+#box{
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+  margin-top: 6em;
 }
 
 .container {
@@ -42,17 +73,17 @@ h1{
     padding-bottom: 70px;
     padding-top: 50px;
     text-align: center;
-   
 }
 
 
-button{
-  /*  padding-top: 200px;
-    padding-bottom: 100px;*/
+/*button for login with google*/
+#login, #logout{
+    /*padding-top: 200px;*/
+    /*padding-bottom: 100px;*/
     display: block;
     width: 100%;
     padding: 25px 40px;
-    
+
     border: none;
     background: #5fb2e9;
     outline: none;
@@ -61,39 +92,52 @@ button{
     color: #FFF;
     cursor: pointer;
     transition: .3s;
- 
-   
-    
+
+
+
 }
-
-
-
-
       </style>
   </head>
 
 
   <body>
+<nav class="navbar navbar-dark navbar-expand-md shadow" id="app-navbar">
+  <div class="container-fluid"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <a href="/"><img src="Logo.png" style="max-height: 3em;"></a> <!-- Show logo, redirect home when clicked -->
+    <button class="btn "><a href="/" style="color: #939393"><b>Back to Home</b></a></button>
+    <button class="btn "><a href="/newroom" style="color: #939393"><b>Post a room</b></a></button>
 
-    <div class="container">
-    <h1 style="font-size: 2.5rem; font-weight: 800; padding-bottom: 300;">Welcome!</h1>
-    <div id="LoginScreen">
-      <button id="login">Login with Google</button>
-      <br>
-
-      <!--just for me to see if the users were getting signed in and out properly  -->
-      
+    <div class="collapse navbar-collapse" id="navcol-2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link active" href="account.html">Account</a></li>
+      </ul>
     </div>
+  </div>
+</nav>
+
+
+
+  <div id="box" style="width: 100%;">
+    <div class="container">
+      <h1 style="font-size: 2.5rem; font-weight: 800; padding-bottom: 300;">Welcome!</h1>
+      <div id="LoginScreen">
+        <button id="login">Login with Google</button>
+        <br>
+
+        <!--just for me to see if the users were getting signed in and out properly  -->
+
+      </div>
 
       <div id="dashboard">
-      <div id="userDetails"></div>
-      <button id="logout">Logout</button>
+        <div id="userDetails"></div>
+        <button id="logout">Logout</button>
       
+      </div>
     </div>
   </div>
 
      
-  </div>
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
    
 
@@ -149,7 +193,7 @@ button{
     signInWithPopup(auth, provider).then(res=>{
 
       console.log('logged in')
-     window.location.href = "home.html";
+     window.location.href = "home.html"; // Go back to home page
       document.getElementById('LoginScreen').style.display="none"
       document.getElementById('dashboard').style.display="block"
      
