@@ -20,7 +20,7 @@
 </head>
 <body>
     <nav class="navbar navbar-dark navbar-expand-md" id="app-navbar">
-        <div class="container-fluid"><a class="navbar-brand" href="home.html"><i class="icon ion-ios-infinite" id="brand-logo"></i></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container-fluid"><a class="navbar-brand" href="home.html"><img src="Welcome1.png" id="logo" alt="" height="75" width ="180"></i></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav ml-auto">
                     <li id="accountButton" class="nav-item"><a class="nav-link active" href="account.html">Account</a></li>
@@ -56,6 +56,7 @@
         })();
         </script>
     <div id="sidebar">
+     <h5 id="contactheader"style="font-size: 1.5rem; font-weight: 800; padding-bottom: 300;"><b>Contact The Seller</b></h5>
         <div class="toggle-btn" onclick ="show()">
             <div class="col-md-4">
             <button id="book" name="book" class="btn btn-primary"><h5>Contact Seller</h5></button>   
@@ -63,7 +64,7 @@
         </div>
         <input type="text" id="fromName" placeholder="Enter Name">
         <input type="text" id="fromEmail" placeholder="Enter Email">
-        <input type="textarea" id="message" placeholder="Enter Message">
+        <textarea rows="4" cols="25" id="message" placeholder="Enter Message"></textarea>
         <button id="send" class="btn btn-primary" onclick='sendMail()'>Send Email</button>
     </body>
       </div>
