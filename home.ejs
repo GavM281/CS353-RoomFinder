@@ -55,7 +55,7 @@
       </label>
 
       <form class="me-auto search-form" target="_self">
-        <input id="search-field" class="form-control search-field" type="search" name="search" />
+        <input id="search-field" class="form-control search-field" type="search" name="search" onkeyup="mySearchFunctions()"/>
       </form><a class="btn btn-light action-button" role="button" href="#"><i class="fa fa-search"></i></a>
     </div>
   </div>
@@ -96,7 +96,7 @@
     })();
   </script>
 
-  <div class="rounded-corners shadow" style="padding: 5px; background-color: white">
+  <div id = "int" class="rounded-corners shadow" style="padding: 5px; background-color: white">
     <!--<div id="sidebar">-->
     <!--  <h5 id="contactheader"style="font-size: 1.5rem; font-weight: 800; padding-bottom: 300;"><b>Contact The Seller</b></h5>-->
     <!--  <div class="toggle-btn" onclick ="show()">-->
@@ -139,7 +139,7 @@
     <!--loops through every entry from the list passed in and adds them to page -->
     <% for( let room of list ){ %>
 
-      <div class="room" style="margin-bottom: -0px; background-color:white;">
+      <nav id = "main" class="room" style="margin-bottom: -0px; background-color:white;">
         <div class="row" style="padding: 20px;">
 
           <!-- Image of room - 33% width -->
@@ -181,7 +181,7 @@
           <div class="col-md-4 rounded-corners"><iframe class="rounded-corners shadow" allowfullscreen frameborder="0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyD-3-QEHpgnhneCKlo5-rnQPX_mOd9hmNo&amp;center=<%=room.latitude%>%2C<%=room.longitude%>&amp;zoom=16" loading="lazy" width="100%" height="100%" style="max-width: 100%;"></iframe></div>
 
         </div>
-      </div>
+      </nav>
     <% } %>
   </div>
 </section>
@@ -212,7 +212,35 @@
     document.getElementById("message").value = "";
 
   }
-
+  window.onload = mySearchFunctions();
+  function mySearchFunctions() {
+    // Declare variables
+    var input, filter, ul, li, item, item2, i, txtValue, navtext;
+    // User Input
+    input = document.getElementById("search-field");
+    // Filter, makes search not case sensitive
+    filter = input.value.toLowerCase();
+    // Grabs the parent element by id
+    ul = document.getElementById("int");
+    // Individual item on list
+    li = ul.getElementsByTagName("h1");
+    li1 = ul.getElementsByTagName("nav");
+    // Treats lists items like an array, where each item can be accessed through it's index
+    for (i = 0; i < li.length; i++) {
+      item = li[i];
+     // Iterate over each list item to see if the value of the input, ignoring case, matches the inner text or inner html of the item.
+      txtValue = item.textContent || item.innerText;
+      if (txtValue.toLowerCase().indexOf(filter) > -1) {
+      // Displays list items that are a match, and nothing if no match
+        li[i].style.display = "";
+        li1[i].style.display = "";
+      } 
+      else {
+        li[i].style.display = "none";
+        li1[i].style.display = "none";
+      }
+    }
+}
   // Checks whether rooms are in range entered by user, if not removes them from page
   function checkRange() {
     console.log('CHECKING RANGE');
@@ -246,6 +274,7 @@
       }
     }
   }
+
 </script>
 
 <script type ="module">
