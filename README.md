@@ -9,7 +9,13 @@ A group project to create a website for finding and posting available rooms.
 * Search rooms by name
 * View the location of rooms through the Google Maps API
 * Delete rooms
+
+Home page
 ![image](https://user-images.githubusercontent.com/25159545/229938249-43b95e76-30fc-4b17-a7f3-d8aec8e02825.png)
+
+Creation Page
+![image](https://user-images.githubusercontent.com/25159545/229942749-0c992611-0dc5-4bf9-b276-14101b1b10c8.png)
+
 
 ### Tech Used
 * Firebase
